@@ -3,7 +3,8 @@
 
 
 This IaC provisions a Ubuntu LXC with:
-- 1 core
-- 512mb ram
-- 59gb drive
+- 1 Core
+- 512MB RAM
+- 50GB Drive
 - static IP
+- SSH Keys for root
