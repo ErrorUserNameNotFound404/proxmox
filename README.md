@@ -12,9 +12,7 @@ This IaC provisions:
 - SSH Keys for root
 
 
-2. Kali LXC with:
-- 2 Core
-- 2048MB RAM
-- 50GB Drive
-- static IP
-- SSH Keys for root
+2. Kali VM clone with:
+- 4 Cores
+- 4GB RAM
+- SSH Keys

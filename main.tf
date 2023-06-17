@@ -40,26 +40,11 @@ resource "proxmox_lxc" "lxc_ubuntu" {
   }
 }
 
-resource "proxmox_lxc" "lxc_kali" {
-  target_node     = var.proxmox_host
-  ssh_public_keys = var.ssh_key
-  hostname        = "lxc-kali"
-  description     = "kali lxc for 1337 stuff"
-  ostemplate      = "RAID:vztmpl/kali-lxc.tar.xz"
-  cores           = 2
-  memory          = 2048
-  nameserver      = "10.1.10.2"
-  onboot          = true
-
-  rootfs {
-    storage = "RAID"
-    size    = "50G"
-
-  }
-
-  network {
-    name   = "eth0"
-    bridge = "vmbr0"
-    ip     = "10.1.10.7/24"
-  }
+resource "proxmox_vm_qemu" "kaliVM" {
+  target_node = var.proxmox_host
+  name        = "KaliVM"
+  clone       = "Kali-Everything"
+  full_clone  = true
+  memory      = 4096
+  cpu         = 4
 }
