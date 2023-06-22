@@ -53,7 +53,7 @@ resource "proxmox_vm_qemu" "KaliTHM" {
   target_node = var.proxmox_host
   name        = "KaliTHM"
   sshkeys     = var.ssh_pub_key
-  clone       = "kaliVM"
+  clone       = "Kali-Everything"
   full_clone  = true
   memory      = 8192
   cpu         = 8
