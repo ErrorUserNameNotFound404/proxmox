@@ -18,13 +18,13 @@ provider "proxmox" {
 
 resource "proxmox_lxc" "lxc_ubuntu" {
   target_node     = var.proxmox_host
-  ssh_public_keys = var.ssh_key
+  ssh_public_keys = var.ssh_pub_key
   hostname        = "lxc-Ubuntu-git"
   description     = "test Ubuntu linux lxc for git"
-  ostemplate      = "RAID:vztmpl/ubuntu-20.04-standard_20.04-1_amd64.tar.gz"
+  ostemplate      = var.ubuntu_templete
   cores           = 1
   memory          = 512
-  nameserver      = "10.1.10.2"
+  nameserver      = var.nameserver
   onboot          = true
 
   rootfs {
@@ -47,4 +47,15 @@ resource "proxmox_vm_qemu" "kaliVM" {
   full_clone  = true
   memory      = 4096
   cpu         = 4
+}
+
+resource "proxmox_vm_qemu" "KaliTHM" {
+  target_node = var.proxmox_host
+  name        = "KaliTHM"
+  sshkeys     = var.ssh_pub_key
+  clone       = "kaliVM"
+  full_clone  = true
+  memory      = 8192
+  cpu         = 8
+  ipconfig0   = "ip=${"10.1.10.5/24"},gw=${var.gateway}"
 }
