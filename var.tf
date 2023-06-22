@@ -6,7 +6,6 @@ variable "proxmox_host" {
 }
 
 variable "api_url" {
-  default = "https://10.1.10.222:8006/api2/json"
 }
 
 variable "token_secret" {
